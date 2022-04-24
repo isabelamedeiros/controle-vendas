@@ -1,30 +1,43 @@
 package com.api.controlevendas.controllers;
 
+import com.api.controlevendas.services.ControleVendasService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/")
 public class ControleVendasController {
 
-    public static final String URL_CLIENTES = "http://www.mocky.io/v2/598b16291100004705515ec5";
-    public static final String URL_COMPRAS = "http://www.mocky.io/v2/598b16861100004905515ec7";
+    @Autowired
+    ControleVendasService controleVendasService;
 
     @GetMapping("urlclientes")
     public void consultaUrlClientes() {
-        RestTemplate restTemplate = new RestTemplate();
-        List<Object> response = restTemplate.getForObject(URL_CLIENTES, List.class);
-        System.out.println(response);
+        controleVendasService.consultarBaseClientes();
     }
 
     @GetMapping("urlcompras")
-    public void consultaUrlCompras(){
-        RestTemplate restTemplate = new RestTemplate();
-        List<Object> response = restTemplate.getForObject(URL_COMPRAS, List.class);
-        System.out.println(response);
+    public void consultaUrlCompras() {
+        controleVendasService.consultarBaseCompras();
     }
+
+    @GetMapping("clientes-ordenados")
+    public void consultaClientesOrdenados() {
+        controleVendasService.consultarClientesOrdenados();
+    }
+
+    @GetMapping("valor-total-ordenado")
+    public void consultarValorTotalOrdenado() {
+        controleVendasService.consultarValorTotalOrdenado();
+    }
+
+    /*
+     *
+     *
+     *
+     */
+//TODO Falta implementar os metodos abaixo
 
     @GetMapping("compras")
 //    GET: /compras - Retornar a lista de compras ordenadas de forma crescente por valor
