@@ -32,35 +32,35 @@ public class ControleVendasController {
         controleVendasService.consultarValorTotalOrdenado();
     }
 
+    @GetMapping("compras")
+    public void consultaOrdenadaCompras() {
+        controleVendasService.consultaOrdenadaCompras();
+    }
+
     /*
      *
      *
      *
      */
-//TODO Falta implementar os metodos abaixo
 
-    @GetMapping("compras")
-//    GET: /compras - Retornar a lista de compras ordenadas de forma crescente por valor
-    public String consultaOrdenadaCompras() {
-        return "";
-    }
+    //TODO Falta implementar os metodos abaixo
 
+    //    GET: /maior-compra/ano - (Exemplo: /maior_compra/2016) - Retornar a maior compra do ano informado com dados da compra
     @GetMapping("maior-compra/ano")
-//    GET: /maior-compra/ano - (Exemplo: /maior_compra/2016) - Retornar a maior compra do ano informado com dados da compra
-    public String consultaMaiorCompraAno() {
-        return "";
+    public void consultaMaiorCompraAno() {
+        controleVendasService.consultaMaiorCompraAno();
     }
 
+    //    GET: /clientes-fieis - Retornar o Top 3 clientes mais fiéis, clientes que possuem mais compras recorrentes com maiores valores.
     @GetMapping("clientes-fieis")
-//    GET: /clientes-fieis - Retornar o Top 3 clientes mais fiéis, clientes que possuem mais compras recorrentes com maiores valores.
-    public String consultaClientesFieis() {
-        return "";
+    public void consultaClientesFieis() {
+        controleVendasService.consultaClientesFieis();
     }
 
+    //  GET: /recomendacao/cliente/tipo - Retornar uma recomendação de vinho baseado nos tipos de vinho que o cliente mais compra
     @GetMapping("recomendacao/cliente/tipo")
-//  GET: /recomendacao/cliente/tipo - Retornar uma recomendação de vinho baseado nos tipos de vinho que o cliente mais compra
-    public String consultaRecomendacao() {
-        return "";
+    public void consultaRecomendacao() {
+        controleVendasService.consultaRecomendacao();
     }
 
 }

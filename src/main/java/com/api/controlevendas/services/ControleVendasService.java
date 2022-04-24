@@ -2,6 +2,7 @@ package com.api.controlevendas.services;
 
 import com.api.controlevendas.dto.Clientes;
 import com.api.controlevendas.dto.Compras;
+import com.api.controlevendas.dto.Itens;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -52,20 +53,27 @@ public class ControleVendasService {
                 .collect(Collectors.toList()));
     }
 
+    public String consultaOrdenadaCompras() {
+        RestTemplate restTemplate = new RestTemplate();
+        Itens[] response = restTemplate.getForObject(URL_COMPRAS, Itens[].class);
+
+        List compras = Arrays.stream(response)
+                .map(Itens::getPreco)
+                .sorted()
+                .collect(Collectors.toList());
+
+        System.out.println(compras);
+
+        return compras.toString();
+    }
+
     /*
      *
      *
      *
      */
+
     //TODO Falta implementar os metodos abaixo
-
-    //    GET: /compras - Retornar a lista de compras ordenadas de forma crescente por valor
-    public String consultaOrdenadaCompras() {
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.getForEntity(URL_COMPRAS, String.class);
-        return response.toString();
-    }
-
 
     //    GET: /maior-compra/ano - (Exemplo: /maior_compra/2016) - Retornar a maior compra do ano informado com dados da compra
     public String consultaMaiorCompraAno() {
