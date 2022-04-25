@@ -1,13 +1,13 @@
 package com.api.controlevendas.dto;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class Compras {
+public class Compras<Item> {
 
     public String codigo;
     public String data;
     public String cliente;
-    public ArrayList Itens;
+    private List<Item> itens;
     public double valorTotal;
 
     public String getCodigo() {
@@ -34,12 +34,12 @@ public class Compras {
         this.cliente = cliente;
     }
 
-    public ArrayList getItens() {
-        return Itens;
+    public List<Item> getItens() {
+        return itens;
     }
 
-    public void setItens(ArrayList itens) {
-        Itens = itens;
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
     }
 
     public double getValorTotal() {

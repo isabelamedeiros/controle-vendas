@@ -3,12 +3,16 @@ package com.api.controlevendas.services;
 import com.api.controlevendas.dto.Clientes;
 import com.api.controlevendas.dto.Compras;
 import com.api.controlevendas.dto.Itens;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -18,6 +22,12 @@ public class ControleVendasService {
     public static final String URL_CLIENTES = "http://www.mocky.io/v2/598b16291100004705515ec5";
     public static final String URL_COMPRAS = "http://www.mocky.io/v2/598b16861100004905515ec7";
 
+//    @Autowired
+//    private final RestTemplate restTemplate;
+//
+//    private ControleVendasService(RestTemplate restTemplate) {
+//        this.restTemplate = restTemplate;
+//    }
 
     public void consultarBaseClientes() {
         RestTemplate restTemplate = new RestTemplate();
@@ -67,6 +77,18 @@ public class ControleVendasService {
         return compras.toString();
     }
 
+    public void consultaMaiorCompraTotal() {
+        RestTemplate restTemplate = new RestTemplate();
+        Compras[] response = restTemplate.getForObject(URL_COMPRAS, Compras[].class);
+
+        List compras = Arrays.stream(response)
+                .map(Compras::getValorTotal)
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.toList());
+
+        System.out.println(compras.get(0));
+    }
+
     /*
      *
      *
@@ -76,10 +98,16 @@ public class ControleVendasService {
     //TODO Falta implementar os metodos abaixo
 
     //    GET: /maior-compra/ano - (Exemplo: /maior_compra/2016) - Retornar a maior compra do ano informado com dados da compra
-    public String consultaMaiorCompraAno() {
+    public void consultaMaiorCompraAno() {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.getForEntity(URL_COMPRAS, String.class);
-        return response.toString();
+        Compras[] response = restTemplate.getForObject(URL_COMPRAS, Compras[].class);
+
+        List compras = Arrays.stream(response)
+                .map(Compras::getValorTotal)
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.toList());
+
+        System.out.println(compras.get(0));
     }
 
 

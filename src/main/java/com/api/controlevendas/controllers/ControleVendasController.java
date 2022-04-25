@@ -37,16 +37,23 @@ public class ControleVendasController {
         controleVendasService.consultaOrdenadaCompras();
     }
 
+    @GetMapping("maior-compra-total")
+    public void consultaMaiorCompraTotal() {
+        controleVendasService.consultaMaiorCompraTotal();
+    }
+
     /*
      *
      *
      *
      */
 
+
+
     //TODO Falta implementar os metodos abaixo
 
     //    GET: /maior-compra/ano - (Exemplo: /maior_compra/2016) - Retornar a maior compra do ano informado com dados da compra
-    @GetMapping("maior-compra/ano")
+    @GetMapping("maior-compra/{ano}")
     public void consultaMaiorCompraAno() {
         controleVendasService.consultaMaiorCompraAno();
     }
@@ -58,7 +65,7 @@ public class ControleVendasController {
     }
 
     //  GET: /recomendacao/cliente/tipo - Retornar uma recomendação de vinho baseado nos tipos de vinho que o cliente mais compra
-    @GetMapping("recomendacao/cliente/tipo")
+    @GetMapping("recomendacao/{cliente}/{tipo}")
     public void consultaRecomendacao() {
         controleVendasService.consultaRecomendacao();
     }

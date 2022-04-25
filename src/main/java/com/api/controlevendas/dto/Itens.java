@@ -1,5 +1,8 @@
 package com.api.controlevendas.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Itens {
         public String codigo;
         public String produto;
